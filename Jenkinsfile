@@ -5,7 +5,7 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_0_5') {
+                withMaven(traceability: true) {
                     sh 'mvn clean compile'
                 }
             }
@@ -14,7 +14,7 @@ pipeline {
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_0_5') {
+                withMaven(traceability: true) {
                     sh 'mvn test'
                 }
             }
@@ -23,8 +23,8 @@ pipeline {
 
         stage ('Deployment Stage') {
             steps {
-                withMaven(maven : 'maven_3_0_5') {
-                    sh 'mvn deploy'
+                withMaven(traceability: true) {
+                    sh 'mvn install'
                 }
             }
         }
